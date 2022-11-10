@@ -10,10 +10,12 @@ public class CourierGenerator {
     }
     //Курьер без логина
     public static CourierData getCourierWithoutLogin() {
+
         return new CourierData(null, "1234", "Julia");
     }
     //Курьер без пароля
     public static CourierData getCourierWithoutPassword() {
+
         return new CourierData("ohoh", null, "Julia");
     }
 

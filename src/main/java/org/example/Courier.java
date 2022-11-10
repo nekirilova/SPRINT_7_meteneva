@@ -25,10 +25,19 @@ public class Courier extends Client {
     public ValidatableResponse login(Credentials credentials) {
         return given()
                 .spec(getSpecification())
-                .body(credentials) //Или Credentials.from?
+                .body(credentials)
                 .when()
                 .post(PATH_LOGIN).then();
     }
+
+    public ValidatableResponse loginOnly(LoginData loginData) {
+        return given()
+                .spec(getSpecification())
+                .body(loginData)
+                .when()
+                .post(PATH_LOGIN).then();
+    }
+
     //Удаление курьера через апи
     public ValidatableResponse delete(int id) {
         return given()
