@@ -2,33 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class NewOrder {
-
-    private String firstName;
-    private String lastName;
-    private String address;
-    private int metroStation;
-    private String phone;
-    private int rentTime;
-    private String deliveryDate;
-    private String comment;
-    private List<String> color;
-
-        public NewOrder(String firstName, String lastName, String address, int metroStation, String phone, int rentTime, String deliveryDate, String comment, List<String> color) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-            this.address = address;
-            this.metroStation = metroStation;
-        this.phone = phone;
-        this.rentTime = rentTime;
-        this.deliveryDate = deliveryDate;
-        this.comment = comment;
-        this.color = color;
-    }
-
-    public NewOrder() {
-
-    }
+public class OrderGenerator {
 
     public String getFirstName() {
         return firstName;
@@ -45,6 +19,7 @@ public class NewOrder {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getAddress() {
         return address;
     }
@@ -52,6 +27,7 @@ public class NewOrder {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public int getMetroStation() {
         return metroStation;
     }
@@ -100,7 +76,31 @@ public class NewOrder {
         this.color = color;
     }
 
+    public List<String> getColorBlack() {
+        return colorBlack;
+    }
 
+    public void setColorBlack(List<String> colorBlack) {
+        this.colorBlack = colorBlack;
+    }
 
+    public List<String> getColorGrey() {
+        return colorGrey;
+    }
 
+    public void setColorGrey(List<String> colorGrey) {
+        this.colorGrey = colorGrey;
+    }
+
+    private String firstName = "Masha";
+    private String lastName = "Kuznetsova";
+    private String address = "Lenina, 25-10";
+    private int metroStation = 34;
+    private String phone = "89008002030";
+    private int rentTime = 1;
+    private String deliveryDate = "2022-11-15";
+    private String comment = "no comment";
+    private List<String> color = List.of("BLACK", "GREY");
+    private List<String> colorBlack = List.of("BLACK");
+    private List<String> colorGrey = List.of("GREY");
 }

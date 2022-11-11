@@ -7,6 +7,7 @@ import static io.restassured.RestAssured.given;
 public class Orders extends Client {
     private static final String PATH_ORDER = "/api/v1/orders"; //Эндпойнт для создания заказа
     private static final String PATH_TRACK = "/api/v1/orders/track?t="; //эндпойнт для получения заказа по его трек-номеру
+    private static final String PATH_CANCEL = "/api/v1/orders/cancel"; //Эндпойнт для отмены заказа по его трек-номеру
 
 //создание заказа через апи
 
@@ -25,6 +26,16 @@ public class Orders extends Client {
                 .spec(getSpecification())
                 .when()
                 .get(PATH_TRACK + Integer.toString(id)).then();
+    }
+
+    //отмена заказа по его трек номеру
+
+    public ValidatableResponse cancel(TrackOrder trackOrder) {
+        return given()
+                .spec(getSpecification())
+                .body(trackOrder)
+                .when()
+                .put(PATH_CANCEL).then();
     }
 
 }
