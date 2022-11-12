@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -22,7 +23,8 @@ public class CreateCourierTest {
     public void cleanUp() {
         courier.delete(id);
     }
-    @Test //Создание курьера возвращает статус код  201
+    @Test
+    @DisplayName("Создание курьера возвращает статус код  201")
     public void createCourierReturnsStatusCode201() {
         courierData = CourierGenerator.getDefault(); //создаем объект класса с корректными данными
         ValidatableResponse responseCreate = courier.create(courierData); //отправляем запрос на создание курьера и записываем ответ в переменную
@@ -36,7 +38,8 @@ public class CreateCourierTest {
        Assert.assertEquals("Incorrect Status code", expectedStatusCode, actualStatusCode);//проверяем, что фактический статус код соответствует ожидаемому
         }
 
-    @Test //создание курьера возвращает правильное сообщение
+    @Test
+    @DisplayName("Создание курьера возвращает правильное сообщение")
     public void createCourierReturnsCorrectMessage() {
         courierData = CourierGenerator.getDefault(); //создаем объект класса с корректными данными
         ValidatableResponse responseCreate = courier.create(courierData); //отправляем запрос на создание курьера и записываем ответ в переменную
@@ -48,7 +51,8 @@ public class CreateCourierTest {
         Assert.assertTrue("Incorrect message", isCourierCreated);//проверяем, что фактическое сообщение в ответе соответствует ожидаемому
     }
 
-    @Test //Создание двух одинаковых курьеров возвращает статус код 409
+    @Test
+    @DisplayName("Создание двух одинаковых курьеров возвращает статус код 409")
     public void createSameCourierReturnsStatusCode409() {
         courierData = CourierGenerator.getDefault(); //создаем объект класса с корректными данными
         ValidatableResponse responseCreate1 = courier.create(courierData);//отправляем запрос на создание первого курьера
@@ -62,7 +66,8 @@ public class CreateCourierTest {
 
         Assert.assertEquals("Incorrect Status code", expectedStatusCode, actualStatusCode);//проверяем, что фактический статус код соответствует ожидаемому
     }
-    @Test //Создание двух одинаковых курьеров возвращает правильный текст сообщения
+    @Test
+    @DisplayName("Создание двух одинаковых курьеров возвращает правильный текст сообщения")
     public void createSameCourierReturnsCorrectMessage() {
         courierData = CourierGenerator.getDefault(); //создаем объект класса с корректными данными
         ValidatableResponse responseCreate1 = courier.create(courierData);//отправляем запрос на создание первого курьера

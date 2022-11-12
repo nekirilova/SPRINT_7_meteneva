@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -39,8 +40,9 @@ public class CreateOrderTest {
         orders.cancel(trackNumber);
     }
 
-    //при успешном создании заказа возвращается статус код 201
+
     @Test
+    @DisplayName("при успешном создании заказа возвращается статус код 201")
     public void createOrderWithCorrectFieldsReturnsStatusCode201() {
         orders = new Orders();
         ValidatableResponse responseCreateOrder = orders.create(newOrder); //создаем заказ
@@ -52,8 +54,9 @@ public class CreateOrderTest {
         Assert.assertEquals("Incorrect status code", expectedStatusCode, actualStatusCode); //сравниваем ФР и ОР
     }
 
-    //При создании заказа возращается трек номер
+
     @Test
+    @DisplayName("При создании заказа возращается трек номер")
     public void createOrderWithCorrectFieldsReturnsTrackNumber() {
         orders = new Orders();
         ValidatableResponse responseCreateOrder = orders.create(newOrder); //создаем заказ

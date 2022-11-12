@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -31,7 +32,8 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Авторизация с корректными данными возвращает ответ 200 ОК
+
+    @DisplayName("Авторизация с корректными данными возвращает ответ 200 ОК")
     public void courierLoginReturnsStatusCode200() {
         expectedStatusCode = 200; // ожидаемый статус код
 
@@ -45,7 +47,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Успешная авторизация возвращает id курьера
+    @DisplayName( "Успешная авторизация возвращает id курьера")
     public void courierLoginSuccessfullReturnsCourierId() {
         //вызываем апи метод для авторизации курьера с теми же данными, что были при создании
         ValidatableResponse responseLogin = courier.login(Credentials.from(courierData));
@@ -55,7 +57,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Авторизация с неправильным логином
+    @DisplayName( "Авторизация с неправильным логином возвращает статус код 404")
     public void setIncorrectLoginReturnsStatusCode404() {
         String incorrectLogin = "sunny"; //несуществующий логин
         expectedStatusCode = 404; // ожидаемый статус код
@@ -69,7 +71,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Авторизация с неправильным паролем
+    @DisplayName("Авторизация с неправильным паролем возвращает статус код 404")
     public void setIncorrectPasswordReturnsStatusCode404() {
         String incorrectPassword = "4321"; //неправильный пароль
         expectedStatusCode = 404; //ожидаемый статус код
@@ -83,7 +85,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Авторизация без логина
+    @DisplayName("Авторизация без логина возвращает статус код 400")
     public void loginWithoutLoginReturnsStatusCode400() {
         expectedStatusCode = 400; //ожидаемый статус код
         loginData = new LoginData();
@@ -96,7 +98,7 @@ public class LoginCourierTest {
     }
 
     @Test
-    //Авторизация без пароля
+    @DisplayName("Авторизация Без пароля возвращает статус код 400")
     public void loginWithoutPasswordReturnsStatusCode400() {
         expectedStatusCode = 400; //ожидаемый статус код
         loginData = new LoginData();

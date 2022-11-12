@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +20,8 @@ public class BadCreateCourierTest {
 
     }
 
-    @Test //Создание курьера с пустым логином возвращает статус код 400
+    @Test
+    @DisplayName("Создание курьера с пустым логином возвращает статус код 400")
     public void createCourierWithNullLoginReturnsStatusCode400() {
         courierData = CourierGenerator.getCourierWithoutLogin(); //создаем объект класса без логина
         ValidatableResponse responseCreate = courier.create(courierData); //отправляем запрос на создание курьера и записываем ответ в переменную
@@ -29,7 +31,8 @@ public class BadCreateCourierTest {
 
         Assert.assertEquals("Incorrect Status code", expectedStatusCode, actualStatusCode);//проверяем, что фактический статус код соответствует ожидаемому
     }
-    @Test //Создание курьера с пустым паролем возвращает статус код 400
+    @Test
+    @DisplayName("Создание курьера с пустым паролем возвращает статус код 400")
     public void createCourierWithNullPasswordReturnsStatusCode400() {
         courierData = CourierGenerator.getCourierWithoutPassword(); //создаем объект класса без пароля
         ValidatableResponse responseCreate = courier.create(courierData); //отправляем запрос на создание курьера и записываем ответ в переменную
@@ -40,7 +43,8 @@ public class BadCreateCourierTest {
         Assert.assertEquals("Incorrect Status code", expectedStatusCode, actualStatusCode);//проверяем, что фактический статус код соответствует ожидаемому
     }
 
-    @Test //Создание курьера без поля логин возвращает статус код 400
+    @Test
+    @DisplayName("Создание курьера без поля логин возвращает статус код 400")
     public void createCourierWithoutLoginReturnsStatusCode400() {
         Client client = new Client();
         BadCourierData badCourierData = new BadCourierData();
@@ -57,7 +61,8 @@ public class BadCreateCourierTest {
         Assert.assertEquals("Incorrect Status code", expectedStatusCode, actualStatusCode);//проверяем, что фактический статус код соответствует ожидаемому
     }
 
-    @Test //Создание курьера без поля пароль возвращает статус код 400
+    @Test
+    @DisplayName("Создание курьера без поля пароль возвращает статус код 400")
     public void createCourierWithoutPasswordReturnsStatusCode400() {
         Client client = new Client();
         BadCourierData badCourierData = new BadCourierData();

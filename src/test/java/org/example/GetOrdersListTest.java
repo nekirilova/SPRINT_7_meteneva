@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Assert;
@@ -31,7 +32,8 @@ public class GetOrdersListTest {
         orders.cancel(trackNumber);
     }
 
-    @Test   //запрос на получение списка заказов возращает непустой список заказов
+    @Test //запрос на получение списка заказов возращает непустой список заказов
+    @DisplayName("Запрос на получение списка всех заказов возвращает непустой список")
     public void getAllOrdersReturnsNotEmptyBody() {
         ValidatableResponse response = orders.getAllOrders();      //вызываем метод для получения списка заказов
         ArrayList<String> ordersList = response.extract().path("orders"); //извлекаем значение ключа orders
@@ -39,6 +41,7 @@ public class GetOrdersListTest {
         Assert.assertNotNull("Orders List shouldn't be empty", ordersList); //проверяем, что оно не пустое
     }
     @Test  //запрос на получение списка заказов возвращает непустое поле pageInfo
+    @DisplayName("Запрос на получение списка всех заказов возвращает непустое поле pageInfo")
     public void getAllOrdersReturnsNotEmptyPageInfo() {
         ValidatableResponse response = orders.getAllOrders();       //вызываем метод для получения списка заказов
         LinkedHashMap<String, Integer> pageInfo = response.extract().path("pageInfo");   //извлекаем значение ключа pageInfo
@@ -46,6 +49,7 @@ public class GetOrdersListTest {
         Assert.assertNotNull("Page info shouldn't be empty", pageInfo);  //проверяем, что оно не пустое
     }
     @Test
+    @DisplayName("Запрос на получение списка всех заказов возвращает непустой список доступных станций")
     public void getAllOrdersReturnsNotEmptyAvailableStations() {
         ValidatableResponse response = orders.getAllOrders();   //вызываем метод для получения списка заказов
         ArrayList<String> availableStations = response.extract().path("availableStations");     //извлекаем значение ключа availableStations
@@ -54,6 +58,7 @@ public class GetOrdersListTest {
     }
 
     @Test
+    @DisplayName("Запрос на получение списка заказов по ближайшей станции возвращает непустой список")
     public void getAllOrdersFromNearestStationReturnsNotEmptyBody() {
         ValidatableResponse response = orders.getOrdersFromNearestStation();   //вызываем метод для получения списка заказов по ближайшей станции метро
         ArrayList<String> ordersList = response.extract().path("orders");     //извлекаем значение ключа orders
