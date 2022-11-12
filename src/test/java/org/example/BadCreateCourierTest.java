@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-
+//тесты на создание курьеров с неправильными данными или без обязательных полей
 public class BadCreateCourierTest {
 
     private Courier courier;

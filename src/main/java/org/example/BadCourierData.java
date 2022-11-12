@@ -1,7 +1,7 @@
 package org.example;
-
+//класс с данными
 public class BadCourierData {
-
+//класс с константами для тестов на создание курьера без логина или пароля
     private final String LOGIN = "ohoh";
     private final String PASSWORD = "1234";
 

@@ -3,7 +3,7 @@ package org.example;
 import java.util.List;
 //Класс для генерации тестовых данных
 public class OrderGenerator {
-    private final String firstName = "Masha";
+    private String firstName = "Masha";
     private String lastName = "Kuznetsova";
     private String address = "Lenina, 25-10";
     private int metroStation = 34;

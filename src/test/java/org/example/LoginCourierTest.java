@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+//тесты на авторизацию курьера
 public class LoginCourierTest {
 
     private Courier courier;
@@ -16,17 +16,16 @@ public class LoginCourierTest {
 
     private LoginData loginData;
 
-
     private ValidatableResponse responseCreate;
 
-    @Before
+    @Before //перед каждым тестом создаем курьера
     public void setUp() {
         courier = new Courier();
         courierData = CourierGenerator.getDefault();
         responseCreate = courier.create(courierData);
     }
 
-    @After
+    @After //удаляем курьера после каждого теста
     public void cleanUp() {
         courier.delete(id);
     }
@@ -58,12 +57,12 @@ public class LoginCourierTest {
     @Test
     //Авторизация с неправильным логином
     public void setIncorrectLoginReturnsStatusCode404() {
-        String incorrectLogin = "sunny";
-        expectedStatusCode = 404;
+        String incorrectLogin = "sunny"; //несуществующий логин
+        expectedStatusCode = 404; // ожидаемый статус код
         loginData = new LoginData();
-        loginData.setLogin(incorrectLogin);
-        loginData.setPassword(courierData.getPassword());
-        //вызываем апи метод для авторизации курьера с теми же данными, что были при создании
+        loginData.setLogin(incorrectLogin); //заменяем логин на неправильный
+        loginData.setPassword(courierData.getPassword()); //пароль берем тот, который был при создании курьера перед тестом
+        //вызываем апи метод для авторизации курьера с неправильным логином:
         ValidatableResponse responseLogin = courier.loginOnly(loginData);
         actualStatusCode = responseLogin.extract().statusCode();
         Assert.assertEquals("Incorrect status code", expectedStatusCode, actualStatusCode);
@@ -72,12 +71,12 @@ public class LoginCourierTest {
     @Test
     //Авторизация с неправильным паролем
     public void setIncorrectPasswordReturnsStatusCode404() {
-        String incorrectPassword = "4321";
-        expectedStatusCode = 404;
+        String incorrectPassword = "4321"; //неправильный пароль
+        expectedStatusCode = 404; //ожидаемый статус код
         loginData = new LoginData();
-        loginData.setLogin(courierData.getLogin());
-        loginData.setPassword(incorrectPassword);
-        //вызываем апи метод для авторизации курьера с теми же данными, что были при создании
+        loginData.setLogin(courierData.getLogin()); //логин берем тот, что использовали при создании курьера
+        loginData.setPassword(incorrectPassword); //пароль меняем на неправильный
+        //вызываем апи метод для авторизации курьера с неправильным паролем
         ValidatableResponse responseLogin = courier.loginOnly(loginData);
         actualStatusCode = responseLogin.extract().statusCode();
         Assert.assertEquals("Incorrect status code", expectedStatusCode, actualStatusCode);
@@ -86,11 +85,11 @@ public class LoginCourierTest {
     @Test
     //Авторизация без логина
     public void loginWithoutLoginReturnsStatusCode400() {
-        expectedStatusCode = 400;
+        expectedStatusCode = 400; //ожидаемый статус код
         loginData = new LoginData();
-        loginData.setLogin(null);
-        loginData.setPassword(courierData.getPassword());
-        //вызываем апи метод для авторизации курьера с теми же данными, что были при создании
+        loginData.setLogin(null); //устанавливаем пустой логин
+        loginData.setPassword(courierData.getPassword()); //пароль берем тот же, что был при создании курьера
+        //вызываем апи метод для авторизации курьера без логина
         ValidatableResponse responseLogin = courier.loginOnly(loginData);
         actualStatusCode = responseLogin.extract().statusCode();
         Assert.assertEquals("Incorrect status code", expectedStatusCode, actualStatusCode);
@@ -99,11 +98,11 @@ public class LoginCourierTest {
     @Test
     //Авторизация без пароля
     public void loginWithoutPasswordReturnsStatusCode400() {
-        expectedStatusCode = 400;
+        expectedStatusCode = 400; //ожидаемый статус код
         loginData = new LoginData();
-        loginData.setLogin(courierData.getLogin());
-        loginData.setPassword(null);
-        //вызываем апи метод для авторизации курьера с теми же данными, что были при создании
+        loginData.setLogin(courierData.getLogin()); //берем тот же логин, что был при создании курьера
+        loginData.setPassword(null); //устанавливаем пустой пароль
+        //вызываем апи метод для авторизации курьера без пароля
         ValidatableResponse responseLogin = courier.loginOnly(loginData);
         actualStatusCode = responseLogin.extract().statusCode();
         Assert.assertEquals("Incorrect status code", expectedStatusCode, actualStatusCode);

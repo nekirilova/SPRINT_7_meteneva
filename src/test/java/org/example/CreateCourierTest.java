@@ -5,20 +5,20 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+//тесты на создание курьера
 public class CreateCourierTest {
 
     private Courier courier;
     private CourierData courierData;
     private int id;
 
-    @Before
+    @Before //создаем объект класса Courier перед каждым тестом
     public void setUp() {
         courier = new Courier();
 
     }
 
-    @After
+    @After //удаляем созданного курьера после каждого теста
     public void cleanUp() {
         courier.delete(id);
     }
