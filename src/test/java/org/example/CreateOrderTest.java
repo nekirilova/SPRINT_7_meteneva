@@ -51,15 +51,7 @@ public class CreateOrderTest {
     public static Object[][] fillOrderFields() {
         orderGenerator = new OrderGenerator();
         return new Object[][] {
-                {orderGenerator.getFirstName(), orderGenerator.getLastName(), orderGenerator.getAddress(),
-                orderGenerator.getMetroStation(), orderGenerator.getPhone(), orderGenerator.getRentTime(),
-                orderGenerator.getDeliveryDate(),orderGenerator.getComment(), orderGenerator.getColor()},
-                {orderGenerator.getFirstName(), orderGenerator.getLastName(), orderGenerator.getAddress(),
-                        orderGenerator.getMetroStation(), orderGenerator.getPhone(), orderGenerator.getRentTime(),
-                        orderGenerator.getDeliveryDate(),orderGenerator.getComment(), orderGenerator.getColorBlack()},
-                {orderGenerator.getFirstName(), orderGenerator.getLastName(), orderGenerator.getAddress(),
-                        orderGenerator.getMetroStation(), orderGenerator.getPhone(), orderGenerator.getRentTime(),
-                        orderGenerator.getDeliveryDate(),orderGenerator.getComment(), orderGenerator.getColorGrey()},
+                {orderGenerator.getDefault()},
         };
     }
 

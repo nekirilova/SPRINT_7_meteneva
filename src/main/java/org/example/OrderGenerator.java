@@ -92,6 +92,11 @@ public class OrderGenerator {
         this.colorGrey = colorGrey;
     }
 
+
+    public NewOrder getDefault() {
+        return new NewOrder(this.firstName, this.lastName, this.address, this.metroStation,
+                this.phone, this.rentTime, this.deliveryDate, this.comment, this.color);
+    }
     private String firstName = "Masha";
     private String lastName = "Kuznetsova";
     private String address = "Lenina, 25-10";
